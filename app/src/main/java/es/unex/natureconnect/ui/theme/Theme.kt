@@ -11,12 +11,14 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+/** Color scheme applied when the system is in dark mode. */
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
+/** Color scheme applied when the system is in light mode. */
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
@@ -33,6 +35,16 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+/**
+ * Root theme of the application.
+ *
+ * Applies dynamic color on Android 12 and above when requested, and falls back
+ * to the static dark or light scheme otherwise.
+ *
+ * @param darkTheme Whether to use the dark scheme.
+ * @param dynamicColor Whether to use Material You dynamic color on Android 12+.
+ * @param content Composable tree the theme is applied to.
+ */
 @Composable
 fun NatureConnectTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

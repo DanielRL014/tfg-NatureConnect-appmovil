@@ -36,6 +36,17 @@ import kotlinx.coroutines.launch
 
 
 @Composable
+/**
+ * Registration screen.
+ *
+ * Shows the sign-up form, forwards it to [RegisterViewModel] and invokes
+ * [onLoginSuccess] once the account is created. Errors are displayed in a
+ * snackbar.
+ *
+ * @param application Application used to build the view model.
+ * @param loginViewModel View model that performs the registration.
+ * @param onLoginSuccess Callback invoked when the registration succeeds.
+ */
 fun RegisterScreen(application: Application,
                 loginViewModel: RegisterViewModel = viewModel(factory = RegisterViewModelFactory(application)), // ViewModel asociado
                 onLoginSuccess: () -> Unit
@@ -81,6 +92,12 @@ fun RegisterScreen(application: Application,
 }
 
 @Composable
+/**
+ * Registration form containing the name, email and password fields.
+ *
+ * @param modifier Modifier applied to the content column.
+ * @param onLoginClick Callback that receives the typed name, email and password.
+ */
 fun RegisterContent(
     modifier: Modifier = Modifier,
     onLoginClick: (String, String, Any?) -> Unit

@@ -49,6 +49,15 @@ import es.unex.natureconnect.vi.NuevaPublicacionViewModel
 
 
 @Composable
+/**
+ * Second step of the new publication flow: bird picker.
+ *
+ * Lists the birds with a search box and a family filter dialog; the selected
+ * ones are stored in the draft publication.
+ *
+ * @param navController Controller used to move to the next step.
+ * @param viewModel View model that holds the draft publication.
+ */
 fun SeleccionarAvesScreen(navController: NavController, viewModel: NuevaPublicacionViewModel) {
     val listaAves by viewModel.Aves.collectAsState()
     val textoBusqueda by viewModel.textoBusqueda.collectAsState()
@@ -145,6 +154,12 @@ fun SeleccionarAvesScreen(navController: NavController, viewModel: NuevaPublicac
 
 
 @Composable
+/**
+ * Selectable row for a single bird.
+ *
+ * @param ave Bird to display.
+ * @param onCheckedChange Callback invoked when the checkbox is toggled.
+ */
 fun AveItem(ave: Ave, onCheckedChange: (Boolean) -> Unit) {
     Row(
         modifier = Modifier
@@ -174,6 +189,15 @@ fun AveItem(ave: Ave, onCheckedChange: (Boolean) -> Unit) {
     }
 }
 @Composable
+/**
+ * Dialog that lets the user pick a bird family to filter the bird list with.
+ *
+ * Shows a toast when applying without a selection.
+ *
+ * @param familias Family names offered in the list.
+ * @param onDismiss Callback invoked when the dialog is closed.
+ * @param onApply Callback invoked with the selected family.
+ */
 fun FilterDialogA(
     familias: List<String>,
     onDismiss: () -> Unit,

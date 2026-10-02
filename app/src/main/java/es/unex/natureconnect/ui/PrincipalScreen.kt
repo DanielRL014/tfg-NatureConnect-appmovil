@@ -57,6 +57,15 @@ import es.unex.natureconnect.viewModel.PrincipalViewModel
 import es.unex.natureconnect.viewModel.PrincipalViewModelFactory
 
 @Composable
+/**
+ * Main feed screen for signed-in users.
+ *
+ * Lists the publications as cards, with a search bar, a family filter dialog
+ * and the signed-in bottom navigation.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the publications and filters.
+ */
 fun PrincipalScreen(navController: NavController, viewModel: PrincipalViewModel = viewModel(factory = PrincipalViewModelFactory(navController))) {
     val publicaciones by viewModel.publicaciones.collectAsState(initial = emptyList())
     val familias by viewModel.familias.collectAsState(initial = emptyList())
@@ -98,6 +107,13 @@ fun PrincipalScreen(navController: NavController, viewModel: PrincipalViewModel 
 }
 
 @Composable
+/**
+ * Scrollable list of publications, or an empty-state message when there are none.
+ *
+ * @param publicaciones Publications to display.
+ * @param modifier Modifier applied to the list.
+ * @param navController Controller used to open a publication detail.
+ */
 fun Publicaciones(publicaciones: List<Publicacion>, modifier: Modifier, navController: NavController) {
 
     if (publicaciones.isEmpty()) {
@@ -123,6 +139,12 @@ fun Publicaciones(publicaciones: List<Publicacion>, modifier: Modifier, navContr
 }
 
 @Composable
+/**
+ * Card that renders the photo and the location of a publication.
+ *
+ * @param publicacion Publication to display.
+ * @param onClick Callback invoked when the photo is tapped.
+ */
 fun PublicacionCard(publicacion: Publicacion, onClick: () -> Unit) {
 
     Card(
@@ -165,6 +187,11 @@ fun PublicacionCard(publicacion: Publicacion, onClick: () -> Unit) {
 }
 
 @Composable
+/**
+ * Bottom navigation bar available to signed-in users.
+ *
+ * @param navController Controller used to perform the navigation.
+ */
 fun BottomNavigationBar( navController: NavController) {
     BottomNavigation(
         backgroundColor = Color(0xFF55A458),
@@ -221,7 +248,15 @@ fun BottomNavigationBar( navController: NavController) {
     }
 }
     @Composable
-    fun SearchBar(textoBusqueda: String,viewModel: PrincipalViewModel ,onTextoCambio: (String) -> Unit,onFilterClick: () -> Unit) {
+    /**
+ * Top search bar of the feed, with a trigger for the filter dialog.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ * @param onFilterClick Callback invoked when the filter button is tapped.
+ */
+fun SearchBar(textoBusqueda: String,viewModel: PrincipalViewModel ,onTextoCambio: (String) -> Unit,onFilterClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -260,6 +295,15 @@ fun BottomNavigationBar( navController: NavController) {
     }
 
 @Composable
+/**
+ * Dialog that lets the user pick a bird family to filter publications with.
+ *
+ * Shows a toast when applying without a selection.
+ *
+ * @param familias Family names offered in the list.
+ * @param onDismiss Callback invoked when the dialog is closed.
+ * @param onApply Callback invoked with the selected family.
+ */
 fun FilterDialog(
     familias: List<String>,
     onDismiss: () -> Unit,

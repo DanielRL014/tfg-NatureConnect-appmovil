@@ -30,6 +30,15 @@ import es.unex.natureconnect.viewModel.IaViewModel
 
 
 @Composable
+/**
+ * Guest version of the detection results screen.
+ *
+ * Lists the detected birds exactly like the signed-in screen but uses the
+ * guest bottom navigation.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the detection results.
+ */
 fun DeteccionResponseInvitadoScreen(
     navController: NavController,
     viewModel: IaViewModel

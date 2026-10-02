@@ -51,6 +51,15 @@ import es.unex.natureconnect.viewModel.MapViewModelFactory
 import kotlinx.coroutines.tasks.await
 
 
+/**
+ * Map screen showing every publication as a marker.
+ *
+ * Renders a search bar with a family filter dialog on top and the bottom
+ * navigation below. Tapping a marker opens the publication detail.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the publications and filters.
+ */
 @OptIn(MapsExperimentalFeature::class)
 @Composable
 fun MapScreen(navController: NavController, viewModel: MapViewModel = viewModel(factory = MapViewModelFactory())) {
@@ -95,6 +104,16 @@ fun MapScreen(navController: NavController, viewModel: MapViewModel = viewModel(
     }
 }
 
+/**
+ * Google Map that plots the given publications.
+ *
+ * Requests the location permissions at runtime and centres the camera on the
+ * last known location, falling back to a default coordinate.
+ *
+ * @param publicaciones Publications to plot as markers.
+ * @param modifier Modifier applied to the map.
+ * @param navController Controller used to open a publication detail.
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun Mapa(publicaciones: List<Publicacion>, modifier: Modifier, navController: NavController) {
@@ -167,6 +186,14 @@ fun Mapa(publicaciones: List<Publicacion>, modifier: Modifier, navController: Na
     }
 }
 @Composable
+/**
+ * Top search bar of the map screen, with a trigger for the filter dialog.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ * @param onFilterClick Callback invoked when the filter button is tapped.
+ */
 fun SearchBarMap(textoBusqueda: String, viewModel: MapViewModel, onTextoCambio: (String) -> Unit,onFilterClick: () -> Unit) {
     Row(
         modifier = Modifier

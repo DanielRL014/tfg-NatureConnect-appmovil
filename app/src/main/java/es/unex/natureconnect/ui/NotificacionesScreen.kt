@@ -37,6 +37,16 @@ import es.unex.natureconnect.viewModel.NotificacionesVIewModel
 import es.unex.natureconnect.viewModel.NotificacionesVIewModelFactory
 
 
+/**
+ * Notifications screen listing the likes received by the user's publications.
+ *
+ * Requires API 26 or higher because the underlying view model uses
+ * `java.time.LocalDate`.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param application Application used to build the view model.
+ * @param viewModel View model that provides the notifications.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NotificacionesScreen(navController: NavController, application: Application, viewModel: NotificacionesVIewModel = viewModel(factory = NotificacionesVIewModelFactory(application,navController))) {
@@ -70,6 +80,13 @@ fun NotificacionesScreen(navController: NavController, application: Application,
 }
 
 @Composable
+/**
+ * Scrollable list of notifications, or an empty-state message when there are none.
+ *
+ * @param notificacion Notifications to display.
+ * @param modifier Modifier applied to the list.
+ * @param navController Controller used to perform navigation.
+ */
 fun Notificaciones(notificacion: List<notificacion>, modifier: Modifier, navController: NavController) {
 
     if (notificacion.isEmpty()) {
@@ -95,6 +112,11 @@ fun Notificaciones(notificacion: List<notificacion>, modifier: Modifier, navCont
 
 
 @Composable
+/**
+ * Card that groups the likes received by a single publication.
+ *
+ * @param notificacion Notification to display.
+ */
 fun NotificacionCard(notificacion: notificacion) {
     Card(
         modifier = Modifier
@@ -122,7 +144,12 @@ fun NotificacionCard(notificacion: notificacion) {
     }
 }
     @Composable
-    fun likesCard(like:like){
+    /**
+ * Row that describes a single like: who gave it and when.
+ *
+ * @param like Like to display.
+ */
+fun likesCard(like:like){
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -144,6 +171,14 @@ fun NotificacionCard(notificacion: notificacion) {
             }
         }
     }
+/**
+ * Top search bar of the notifications screen.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param navController Controller used to run the search.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SearchBarNotificaciones(textoBusqueda: String, navController: NavController, viewModel: NotificacionesVIewModel, onTextoCambio: (String) -> Unit) {

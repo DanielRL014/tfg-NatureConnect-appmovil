@@ -12,17 +12,36 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * View model that handles authentication and registration.
+ *
+ * Persists the signed-in user in shared preferences so the session survives
+ * app restarts.
+ *
+ * @param usuariosRepository Repository used to reach the user endpoints.
+ * @param application Application used to access shared preferences.
+ */
 class LoginViewModel(private val usuariosRepository: UsuaraiosRepository, application: Application) : AndroidViewModel(
     application
 ) {
 
     private val sharedPreferences = application.getSharedPreferences("NatureConnectPrefs",  Context.MODE_PRIVATE)
     private val _user = MutableStateFlow<Usuarios?>(null)
+    /** Currently signed-in user, or `null` when nobody is authenticated. */
     val user: StateFlow<Usuarios?> get() = _user
 
     private val _error = MutableStateFlow<String?>(null)
+    /** Last authentication error message, or `null` when there is none. */
     val error: StateFlow<String?> get() = _error
 
+    /**
+     * Signs in a user and stores the session in shared preferences.
+     *
+     * Updates [error] when the credentials are rejected or the request fails.
+     *
+     * @param email Username sent to the backend.
+     * @param password Password sent to the backend.
+     */
     fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
@@ -46,6 +65,7 @@ class LoginViewModel(private val usuariosRepository: UsuaraiosRepository, applic
             }
         }
     }
+    /** Clears the current error message. */
     fun clearError() {
         _error.value = null
     }

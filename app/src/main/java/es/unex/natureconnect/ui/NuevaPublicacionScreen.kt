@@ -32,6 +32,16 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import es.unex.natureconnect.vi.NuevaPublicacionViewModel
 
+/**
+ * First step of the new publication flow.
+ *
+ * Lets the user pick a photo and choose between the current location and a
+ * location picked on the map, requesting the location permissions when needed.
+ *
+ * @param navController Controller used to move to the next steps.
+ * @param application Application used by the view model.
+ * @param viewModel View model that holds the draft publication.
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun NuevaPublicacionScreen(
@@ -117,6 +127,14 @@ fun NuevaPublicacionScreen(
 
 @Composable
 @OptIn(ExperimentalPermissionsApi::class)
+/**
+ * Button that reads the current location and continues to the bird picker.
+ *
+ * Requests the location permissions first when they have not been granted.
+ *
+ * @param viewModel View model that stores the current location.
+ * @param navController Controller used to continue the flow.
+ */
 fun botonUbicacionActual(viewModel: NuevaPublicacionViewModel,navController: NavController) {
     val locationPermissionsState = rememberMultiplePermissionsState(
         listOf(

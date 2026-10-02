@@ -6,8 +6,19 @@ import androidx.lifecycle.ViewModelProvider
 import es.unex.natureconnect.data.repository.UsuaraiosRepository
 import es.unex.natureconnect.network.RetrofitClient
 
+/**
+ * Factory that creates [LoginViewModel] instances with their repository.
+ *
+ * @param application Application forwarded to the view model.
+ */
 class LoginViewModelFactory(private val application: Application) : ViewModelProvider.Factory{
 
+    /**
+     * Creates the requested view model.
+     *
+     * @param modelClass Class of the view model to create.
+     * @return A new [LoginViewModel] backed by [UsuaraiosRepository].
+     */
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val repository = UsuaraiosRepository(RetrofitClient.api)
         return LoginViewModel(repository,application) as T

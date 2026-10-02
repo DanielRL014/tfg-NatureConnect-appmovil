@@ -40,6 +40,18 @@ import es.unex.natureconnect.viewModel.LoginViewModelFactory
 import kotlinx.coroutines.launch
 
 @Composable
+/**
+ * Login screen.
+ *
+ * Shows the credentials form, forwards them to [LoginViewModel] and invokes
+ * [onLoginSuccess] once a user is authenticated. Errors are displayed in a
+ * snackbar.
+ *
+ * @param application Application used to build the view model.
+ * @param navController Controller used to reach the register and guest screens.
+ * @param loginViewModel View model that performs the authentication.
+ * @param onLoginSuccess Callback invoked when the login succeeds.
+ */
 fun LoginScreen(application: Application,navController: NavController,
     loginViewModel: LoginViewModel = viewModel(factory = LoginViewModelFactory(application)),
     onLoginSuccess: () -> Unit
@@ -88,6 +100,13 @@ fun LoginScreen(application: Application,navController: NavController,
 }
 
 @Composable
+/**
+ * Login form containing the credentials fields and the navigation buttons.
+ *
+ * @param navController Controller used to reach the register and guest screens.
+ * @param modifier Modifier applied to the content column.
+ * @param onLoginClick Callback that receives the typed username and password.
+ */
 fun LoginContent(
     navController: NavController,
     modifier: Modifier = Modifier,
