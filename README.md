@@ -265,8 +265,7 @@ data class Publicacion(/* ... */)
 
 - The backend base URL and the photo URL prefix are hardcoded, so a different server requires a
   code change.
-- The Google Maps API key is committed in the manifest; restrict it by package and SHA-1 before a
-  release, or move it to `local.properties`.
+- The Google Maps API key is committed in the manifest.
 - Some identifiers keep their original (misspelled) names, e.g. `UsuaraiosRepository`,
   `PublicacionesRespository`, `es.unex.natureconnect.vi`.
 - Unit test coverage is limited to the template tests.
