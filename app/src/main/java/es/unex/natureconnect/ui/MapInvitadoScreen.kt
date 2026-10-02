@@ -50,6 +50,15 @@ import es.unex.natureconnect.viewModel.MapViewModel
 import es.unex.natureconnect.viewModel.MapViewModelFactory
 import kotlinx.coroutines.tasks.await
 
+/**
+ * Guest version of the map screen.
+ *
+ * Behaves like the signed-in map but uses the guest bottom navigation, so no
+ * account is required to browse the publications.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the publications and filters.
+ */
 @OptIn(MapsExperimentalFeature::class)
 @Composable
 fun MapInvitadoScreen(navController: NavController, viewModel: MapViewModel = viewModel(factory = MapViewModelFactory())) {
@@ -93,6 +102,16 @@ fun MapInvitadoScreen(navController: NavController, viewModel: MapViewModel = vi
     }
 }
 
+/**
+ * Google Map used by the guest flow to plot the given publications.
+ *
+ * Requests the location permissions at runtime and centres the camera on the
+ * last known location, falling back to a default coordinate.
+ *
+ * @param publicaciones Publications to plot as markers.
+ * @param modifier Modifier applied to the map.
+ * @param navController Controller used to open a publication detail.
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun MapaInvitado(publicaciones: List<Publicacion>, modifier: Modifier, navController: NavController) {
@@ -171,6 +190,14 @@ fun MapaInvitado(publicaciones: List<Publicacion>, modifier: Modifier, navContro
 
 
 @Composable
+/**
+ * Top search bar of the guest map screen, with a trigger for the filter dialog.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ * @param onFilterClick Callback invoked when the filter button is tapped.
+ */
 fun SearchBarMapIn(textoBusqueda: String, viewModel: MapViewModel, onTextoCambio: (String) -> Unit,onFilterClick: () -> Unit) {
     Row(
         modifier = Modifier

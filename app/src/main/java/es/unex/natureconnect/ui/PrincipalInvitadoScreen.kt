@@ -36,6 +36,15 @@ import es.unex.natureconnect.viewModel.PrincipalViewModelFactory
 
 
 @Composable
+/**
+ * Guest version of the main feed screen.
+ *
+ * Lists the publications exactly like the signed-in feed but uses the guest
+ * bottom navigation, so no account is required.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the publications and filters.
+ */
 fun PrincipalInvitadoScreen(navController: NavController, viewModel: PrincipalViewModel = viewModel(factory = PrincipalViewModelFactory(navController))) {
     val publicaciones by viewModel.publicaciones.collectAsState(initial = emptyList())
     val familias by viewModel.familias.collectAsState(initial = emptyList())
@@ -78,6 +87,11 @@ fun PrincipalInvitadoScreen(navController: NavController, viewModel: PrincipalVi
 
 
 @Composable
+/**
+ * Bottom navigation bar available to guest users.
+ *
+ * @param navController Controller used to perform the navigation.
+ */
 fun BottomNavigationBarInvitado( navController: NavController) {
     BottomNavigation(
         backgroundColor = Color(0xFF55A458),
@@ -111,6 +125,14 @@ fun BottomNavigationBarInvitado( navController: NavController) {
     }
 }
 @Composable
+/**
+ * Top search bar of the guest feed, with a trigger for the filter dialog.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ * @param onFilterClick Callback invoked when the filter button is tapped.
+ */
 fun SearchBarIn(textoBusqueda: String,viewModel: PrincipalViewModel ,onTextoCambio: (String) -> Unit,onFilterClick: () -> Unit) {
 
     Row(

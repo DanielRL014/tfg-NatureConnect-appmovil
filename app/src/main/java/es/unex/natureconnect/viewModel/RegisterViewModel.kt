@@ -11,16 +11,36 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * View model that handles user registration.
+ *
+ * Persists the new account in shared preferences so the session survives app
+ * restarts.
+ *
+ * @param usuariosRepository Repository used to reach the user endpoints.
+ * @param application Application used to access shared preferences.
+ */
 class RegisterViewModel(private val usuariosRepository: UsuaraiosRepository, application: Application) : AndroidViewModel(
 application
 ) {
     private val sharedPreferences = application.getSharedPreferences("NatureConnectPrefs",  Context.MODE_PRIVATE)
     private val _user = MutableStateFlow<Usuarios?>(null)
+    /** Newly registered user, or `null` before a successful registration. */
     val user: StateFlow<Usuarios?> get() = _user
 
     private val _error = MutableStateFlow<String?>(null)
+    /** Last registration error message, or `null` when there is none. */
     val error: StateFlow<String?> get() = _error
 
+    /**
+     * Registers a new account and stores the session in shared preferences.
+     *
+     * Updates [error] when the registration is rejected or the request fails.
+     *
+     * @param name Username for the new account.
+     * @param password Password for the new account.
+     * @param Email Email address for the new account.
+     */
     fun Create(name: String, password: String,Email:String) {
         viewModelScope.launch {
             try {
@@ -44,6 +64,7 @@ application
             }
         }
     }
+    /** Clears the current error message. */
     fun clearError() {
         _error.value = null
     }

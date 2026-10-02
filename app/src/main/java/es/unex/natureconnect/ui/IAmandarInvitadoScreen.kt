@@ -31,6 +31,16 @@ import coil.compose.rememberAsyncImagePainter
 import es.unex.natureconnect.viewModel.IaViewModel
 
 @Composable
+/**
+ * Guest version of the photo-upload screen for the recognition model.
+ *
+ * Behaves like the signed-in screen but uses the guest bottom navigation and
+ * opens the guest results screen.
+ *
+ * @param navController Controller used to reach the results screen.
+ * @param application Application used by the view model.
+ * @param viewModel View model that performs the detection.
+ */
 fun IAmandarInvitadoScreen(
     navController: NavController,
     application: Application,

@@ -16,11 +16,25 @@ import es.unex.natureconnect.ui.theme.NatureConnectTheme
 import es.unex.natureconnect.vi.NuevaPublicacionViewModel
 import es.unex.natureconnect.viewModel.NuevaPublicacionViewModelFactory
 
+/**
+ * Entry point of the application.
+ *
+ * Sets the Compose content with the app theme and the root navigation graph.
+ */
 class MainActivity : ComponentActivity() {
 
+    /** Firebase Analytics instance, initialised on first access. */
     private val analytics: FirebaseAnalytics by lazy {
         Firebase.analytics
     }
+    /**
+     * Creates the activity and installs the Compose content.
+     *
+     * Requires API 26 or higher because [NavGraph] hosts the notifications
+     * screen, which relies on `java.time.LocalDate`.
+     *
+     * @param savedInstanceState Saved instance state, or `null` on first creation.
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

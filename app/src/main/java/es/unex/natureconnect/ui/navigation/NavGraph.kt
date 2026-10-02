@@ -35,6 +35,19 @@ import es.unex.natureconnect.viewModel.IaViewModelFactory
 import es.unex.natureconnect.viewModel.NuevaPublicacionViewModelFactory
 
 
+/**
+ * Root navigation graph of the app.
+ *
+ * Declares every route and picks `home` as the start destination when a user
+ * is already signed in, falling back to `login` otherwise. The AI and new
+ * publication view models are created here so their state is shared by the
+ * screens of each flow.
+ *
+ * Requires API 26 or higher because the notifications screen uses
+ * `java.time.LocalDate`.
+ *
+ * @param navController Controller that drives the navigation.
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph(navController: NavHostController) {

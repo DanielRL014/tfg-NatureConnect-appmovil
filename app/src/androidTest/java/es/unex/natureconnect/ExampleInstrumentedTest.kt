@@ -15,6 +15,9 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+    /**
+     * Checks that the instrumentation context uses the app package name.
+     */
     @Test
     fun useAppContext() {
         // Context of the app under test.

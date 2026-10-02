@@ -32,6 +32,15 @@ import es.unex.natureconnect.viewModel.IaViewModel
 
 
 @Composable
+/**
+ * Screen where signed-in users pick a photo to send to the recognition model.
+ *
+ * Navigates to the results screen as soon as the model answers.
+ *
+ * @param navController Controller used to reach the results screen.
+ * @param application Application used by the view model.
+ * @param viewModel View model that performs the detection.
+ */
 fun IAmandarScreen(
     navController: NavController,
     application: Application,

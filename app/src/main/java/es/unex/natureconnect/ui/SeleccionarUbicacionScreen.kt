@@ -34,6 +34,16 @@ import es.unex.natureconnect.vi.NuevaPublicacionViewModel
 
 
 @Composable
+/**
+ * Location picker of the new publication flow.
+ *
+ * Shows a map where the user taps to drop a marker; the confirmation button
+ * stores the chosen coordinates and continues to the bird picker.
+ *
+ * @param navController Controller used to move to the next step.
+ * @param application Application used by the view model.
+ * @param viewModel View model that stores the chosen location.
+ */
 fun SeleccionarUbicacionScreen(
     navController: NavController,
     application: Application,

@@ -35,6 +35,13 @@ import es.unex.natureconnect.viewModel.PerfilViewModelFactory
 
 
 @Composable
+/**
+ * Profile screen showing the signed-in user and their publications.
+ *
+ * @param application Application used to build the view model.
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the user's publications.
+ */
 fun PerfilScreen(application: Application,navController: NavController, viewModel: PerfilViewModel = viewModel(factory = PerfilViewModelFactory(application))) {
     val textoBusqueda by viewModel.textoBusqueda.collectAsState()
     val publicaciones by viewModel.publicaciones.collectAsState(initial = emptyList())
@@ -67,6 +74,14 @@ fun PerfilScreen(application: Application,navController: NavController, viewMode
 
 
 @Composable
+/**
+ * Profile header followed by the list of the user's publications.
+ *
+ * @param publicaciones Publications created by the user.
+ * @param modifier Modifier applied to the content.
+ * @param navController Controller used to open a publication detail.
+ * @param nombre Display name shown in the header.
+ */
 fun PublicacionesPerfil(publicaciones: List<Publicacion>, modifier: Modifier, navController: NavController,nombre:String) {
 
 
@@ -106,6 +121,14 @@ fun PublicacionesPerfil(publicaciones: List<Publicacion>, modifier: Modifier, na
 }
 
 @Composable
+/**
+ * Top search bar of the profile screen.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param navController Controller used to run the search.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ */
 fun SearchBarPerfil(textoBusqueda: String, navController: NavController, viewModel: PerfilViewModel, onTextoCambio: (String) -> Unit) {
     Row(
         modifier = Modifier

@@ -38,6 +38,15 @@ import es.unex.natureconnect.data.models.Etiqueta
 import es.unex.natureconnect.vi.NuevaPublicacionViewModel
 
 @Composable
+/**
+ * Last step of the new publication flow: tag picker.
+ *
+ * Lists the tags with a search box; publishing uploads the photo, creates the
+ * publication and links the selected birds and tags.
+ *
+ * @param navController Controller used to publish and return home.
+ * @param viewModel View model that holds the draft publication.
+ */
 fun SeleccionarEtiquetasScreen(navController: NavController, viewModel: NuevaPublicacionViewModel) {
     val listaEtiquetas by viewModel.Etiquetas.collectAsState()
     val textoBusqueda by viewModel.textoBusqueda.collectAsState()
@@ -115,6 +124,12 @@ fun SeleccionarEtiquetasScreen(navController: NavController, viewModel: NuevaPub
 
 
 @Composable
+/**
+ * Selectable row for a single tag.
+ *
+ * @param etiqueta Tag to display.
+ * @param onCheckedChange Callback invoked when the checkbox is toggled.
+ */
 fun EtiquetaItem(etiqueta: Etiqueta, onCheckedChange: (Boolean) -> Unit) {
     Row(
         modifier = Modifier

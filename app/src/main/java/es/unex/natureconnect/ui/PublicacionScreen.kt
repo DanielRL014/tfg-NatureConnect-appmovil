@@ -41,6 +41,16 @@ import es.unex.natureconnect.viewModel.PublicacionViewModel
 import es.unex.natureconnect.viewModel.PublicacionViewModelFactory
 
 @Composable
+/**
+ * Publication detail screen.
+ *
+ * Shows the photo, its birds, tags, location and like counter, using the
+ * signed-in or the guest bottom navigation depending on the session.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param application Application used to build the view model.
+ * @param viewModel View model that loads the publication.
+ */
 fun PublicacionScreen(navController: NavController, application: Application, viewModel: PublicacionViewModel=viewModel(factory = PublicacionViewModelFactory(application,navController))){
     val publicacion by viewModel.publicacion.collectAsState()
     val textoBusqueda by viewModel.textoBusqueda.collectAsState()
@@ -81,6 +91,17 @@ fun PublicacionScreen(navController: NavController, application: Application, vi
 
 
 @Composable
+/**
+ * Content of the publication detail: photo, birds, tags and like button.
+ *
+ * Guests are redirected to the login screen when they tap the like button.
+ *
+ * @param viewModel View model that performs the like operations.
+ * @param PublicacionS Publication to display, or `null` while loading.
+ * @param modifier Modifier applied to the content.
+ * @param navController Controller used to navigate or refresh the detail.
+ * @param sesion Whether the screen was opened by a signed-in user.
+ */
 fun PublicacionV(
     viewModel: PublicacionViewModel,
     PublicacionS: Publicacion?, modifier: Modifier, navController: NavController,
@@ -197,7 +218,15 @@ fun PublicacionV(
     }
 }
     @Composable
-    fun SearchBarPublicacion(
+    /**
+ * Top search bar of the publication detail screen.
+ *
+ * @param textoBusqueda Text currently shown in the search field.
+ * @param navController Controller used to run the search.
+ * @param viewModel View model that runs the search.
+ * @param onTextoCambio Callback invoked when the text changes.
+ */
+fun SearchBarPublicacion(
         textoBusqueda: String,
         navController: NavController,
         viewModel: PublicacionViewModel,

@@ -26,6 +26,15 @@ import es.unex.natureconnect.viewModel.IaViewModel
 
 
 @Composable
+/**
+ * Screen that lists the birds detected by the model.
+ *
+ * Decodes the selected image honouring its EXIF rotation and shows one card
+ * per detection.
+ *
+ * @param navController Controller used to navigate to other screens.
+ * @param viewModel View model that provides the detection results.
+ */
 fun DeteccionResponseScreen(
     navController: NavController,
     viewModel: IaViewModel
@@ -116,6 +125,14 @@ fun DeteccionResponseScreen(
 }
 
 @Composable
+/**
+ * Card showing the cropped photo of a detected bird and its confidence.
+ *
+ * The crop is clamped to the bitmap bounds to tolerate invalid boxes.
+ *
+ * @param ave Detection to display.
+ * @param originalBitmap Full photo the detection comes from.
+ */
 fun AveCard(ave: AveDetectada, originalBitmap: Bitmap) {
     val croppedBitmap = remember(ave) {
         try {
