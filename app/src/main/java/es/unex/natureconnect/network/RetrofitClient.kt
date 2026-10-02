@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  * using generous timeouts to tolerate slow uploads.
  */
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.1.44:8080/"
+    private const val BASE_URL = "http://*******:8080/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
